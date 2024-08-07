@@ -36,12 +36,12 @@ extendEnvironment(async (hre) => {
 
 const config: HardhatUserConfig = {
   solidity: "0.8.19",
-  defaultNetwork: 'ethereumSepolia', // Source Chain
+  defaultNetwork: 'hardhat', // Source Chain
   networks: {
     hardhat: {
       chainId: 31337
     },
-    ethereumSepolia: {
+   /*  ethereumSepolia: {
       url: ETHEREUM_SEPOLIA_RPC_URL !== undefined ? ETHEREUM_SEPOLIA_RPC_URL : '',
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
       chainId: 11155111
@@ -95,7 +95,7 @@ const config: HardhatUserConfig = {
       url: CELO_ALFAJORES_RPC_URL !== undefined ? CELO_ALFAJORES_RPC_URL : '',
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
       chainId: 44787
-    }
+    } */
   }
 };
 
