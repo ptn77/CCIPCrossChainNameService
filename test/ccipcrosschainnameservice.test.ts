@@ -16,7 +16,7 @@ describe("CrossChainNameService Tests", function () {
 
     before(async function () {
         [alice] = await ethers.getSigners(); // Only Alice is needed for this test
-
+        console.log(`Alice address: ${alice.address}`);
         // Deploy SourceCCIPLocalSimulator
         const SourceCCIPLocalSimulatorFactory = await ethers.getContractFactory("CCIPLocalSimulator");
         ccipLocalSimulator = await SourceCCIPLocalSimulatorFactory.deploy();
@@ -36,7 +36,7 @@ describe("CrossChainNameService Tests", function () {
             ccipLnM_
         } = config;
 
-        console.log(`ℹ️  Attempting to deploy CrossChainNameServiceLookup`);
+        console.log(` Attempting to deploy CrossChainNameServiceLookup`);
 
         // Deploy CrossChainNameServiceLookup
         const CCNSLookupFactory = await ethers.getContractFactory("CrossChainNameServiceLookup");
@@ -68,7 +68,7 @@ describe("CrossChainNameService Tests", function () {
 
         console.log("Deployed CrossChainNameServiceReceiver on :", ccnsReceiver.address);
 
-        console.log(`ℹ️  Attempting to call the setCrossChainNameServiceAddress function on the CrossChainNameServiceLookup smart contract`);
+        console.log(`Attempting to call the setCrossChainNameServiceAddress function on the CrossChainNameServiceLookup smart contract`);
 
 
         // Enable chains on source and destination
@@ -90,9 +90,10 @@ describe("CrossChainNameService Tests", function () {
             console.error("Register error:", error);
             throw error; // Re-throw the error after logging it
         }
-
+        console.log("Registered: ", "alice.ccns");
         // Lookup the handle
         const registeredAddress = await ccnsLookup.lookup("alice.ccns");
+        console.log("Registered address: ", registeredAddress);
 
         // Assertions
         expect(registeredAddress).to.equal(alice.address, "The address registered for 'alice.ccns' should be Alice's address");
